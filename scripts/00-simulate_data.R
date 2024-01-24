@@ -1,11 +1,9 @@
 #### Preamble ####
-# Purpose: Simulates a data set 
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Simulates Toronto Shelter System Flow data from 2018 to 2023.
+# Author: Irene Huynh
+# Date: 24 January 2024
+# Contact: irene.huynh@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
 
 
 #### Workspace setup ####
@@ -25,7 +23,7 @@ n <- 504 # Number of observations/rows in the table
 population_group_seq <- rep(NA, times=n)
 pop_group_tracker <- 1
 for(i in 1:n){
-  if (pop_group_tracker == 7){
+  if (pop_group_tracker == 8){
     pop_group_tracker <- 1
   }
   
@@ -41,6 +39,8 @@ for(i in 1:n){
     population_group_seq[i] <- "Single Adult"
   } else if (pop_group_tracker == 6){
     population_group_seq[i] <- "Non-Refugees"
+  } else if (pop_group_tracker == 7){
+    population_group_seq[i] <- "All Population"
   }
   
   pop_group_tracker <- pop_group_tracker + 1
@@ -64,11 +64,3 @@ simulated_data <-
 simulated_data$date <- format(as.Date(simulated_data$date), "%b-%y")
 
 simulated_data
-# Randomly pick an option, without replacement, 7 times
-# "Population Group" = sample(
-#  x = c("Chronic", "Refugees", "Families", "Youth", "Single Adult", "Non-Refugees"),
-# size = 6,
-# replace = FALSE
-# ),
-
-
