@@ -16,7 +16,6 @@ toronto_shelters <-
   # Developers" tab of the relevant page from Open Data Toronto
   # https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/
   list_package_resources("ac77f532-f18b-427c-905c-4ae87ce69c93") |>
-  # Within that package, we are interested in the 2021 dataset
   filter(name == 
            "toronto-shelter-system-flow.csv") |>
   # Having reduced the dataset to one row we can get the resource

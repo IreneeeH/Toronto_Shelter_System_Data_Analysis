@@ -1,12 +1,11 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "An Analysis of Homelessness, Age Groups, and Gender Demographics in Toronto's Shelter System"
 author: 
   - Irene Huynh
 thanks: "Code and data are available at: https://github.com/IreneeeH/STA302-Term-Paper-1.git"
 date: today
 date-format: long
-abstract: "Toronto’s shelter system and homeless population has experienced significant growth over recent years. Using Toronto’s shelter system data from the City of Toronto's Open Data Portal, this paper analyzes the trends of different demographics that utilized shelters from 2018 to 2023. This paper reveals the age group that visits shelters the most, the trend of the average number of individuals who are actively homeless using shelters, the average number of people who return to shelters after acquring housing, and the gap separating the average number of male and female shelter users from 2018 to 2023."
+abstract: "Toronto’s shelter system and homeless population has experienced significant growth over recent years. Using Toronto’s shelter system data from the City of Toronto's Open Data Portal, this paper analyzes the trends of different demographics that utilized shelters from 2018 to 2023. This paper reveals the age group that visits shelters the most, the trend of the average number of individuals who are actively homeless using shelters, the average number of people who return to shelters after acquiring housing, and the gap separating the average number of male and female shelter users from 2018 to 2023."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -24,23 +23,23 @@ library(tidyverse)
 
 Toronto’s shelter system provides a temporary home to those who are in need of one. The system is essential for Toronto’s homeless population and refugees as the shelters uphold standards that support meals and laundry accommodations, mental health and harm reduction services, and a host of counselors to direct and aid individuals acquire permanent housing. Although the shelters provide a multitude of services and aid to secure permanent housing for the unhoused, there are still many who return to shelters after securing housing.
 
-The affordable housing crisis is directly contributing to Toronto’s shelter availability crisis. As Toronto’s housing market has skyrocketed in the past few years, it is no wonder why Toronto’s shelters are receiving significantly more visitors. According to CBC News, an estimated average of at least 273 individuals were turned away from shelters in June 2023 (), which was a record high for Toronto shelters. The amount of families seeking warm beds has been unmatched and as Toronto’s winters can be extremely frigid, shelter availability is becoming increasingly more critical.
+The affordable housing crisis is directly contributing to Toronto’s shelter availability crisis. As Toronto’s housing market has skyrocketed in the past few years, it is no wonder why Toronto’s shelters are receiving significantly more visitors. According to CBC News, an estimated average of at least 273 individuals were turned away from shelters in June 2023, which was a record high for Toronto shelters [@cbc]. The amount of families seeking warm beds has been unmatched and as Toronto’s winters can be extremely frigid, shelter availability is becoming increasingly more critical.
 
-The goal of this paper is to analyze the demographics that utilize Toronto’s shelter system. Varying age groups that utilize shelters are of particular interest. In addition, this paper is also concerned with the actively homeless population and different demographics, such as refugees and single adults, that stay in shelters. Analyzing and studying Toronto’s shelter system data can reveal those within society that are struggling the most with securing housing.
+The goal of this paper is to analyze the demographics that utilize Toronto’s shelter system. Analyzing different age groups that utilize shelters are of particular interest. In addition, this paper is also concerned with the actively homeless population and different demographics, such as refugees and single adults, that stay in shelters. Analyzing and studying Toronto’s shelter system data can reveal those within society that are struggling the most with securing housing.
 
-The remainder of this paper is structured as follows: the Data section details the collection and processing of Toronto's shelter system data and displays tables and graphs that help illustrate trends found in the data. The following Discussion section analyzes and draws conclusions from the tables and graphs exhibited in the previous section.
+The remainder of this paper is structured as follows: the Data section details the collection and processing of Toronto's shelter system data. The following Results section displays tables and graphs that help illustrate trends found in the data. The final Discussion section analyzes and draws conclusions from the tables and graphs exhibited in the previous section.
 
 
-# Data {#sec-data}
+# Data
 
-# Sources
-The data utilized in this paper was retrieved from the City of Toronto's Open Data Portal. The statistical programming language R was used to retrieve, clean, and process the data. In particular, the following R packages were used: opendatatoronto and tidyverse for data acquistion, and janitor for data cleaning and processing.
+## Sources
+The data utilized in this paper was retrieved from the City of Toronto's Open Data Portal [@opendatatoronto]. The statistical programming language R was used to retrieve, clean, and process the data [@citeR]. In particular, the following R packages were used: opendatatoronto and tidyverse [@tidyverse] for data acquisition, janitor [@janitor] and knitr [@knitr] for data cleaning and processing, and ggplot2 [@ggplot2] for creating figures.
 
-# Toronto Shelter System Data
+## Toronto Shelter System Data
 The shelter system data acquired from the City of Toronto's Open Data Portal provided monthly statistics of Toronto's shelters from January 2018 to December 2023. For each month, the data set included information for the entire population, chronic visitors, refugees, families, youth, single adults, and non-refugees. The information of interest for each of those demographics are the number of individuals that returned to shelters after previously acquiring housing, those that are new to the shelter system, those that are actively homeless, those that identify as male and female, and the number of individuals in each age group in that demographic. The age groups consist of visitors under 16, 16 to 24, 25 to 44, 45 to 64, and 65 years of age or older.
 
-# Limitations
-The website for the City of Toronto's Open Data Portal's data for Toronto's shelter system stated that there were limitations to the data set (). A limitation of the data is that the data excludes individuals who do not sleep in shelters or who use other resources for shelter, such as public infrastructure and buildings open all hours.
+## Limitations
+The website for the City of Toronto's Open Data Portal's data for Toronto's shelter system stated that there were limitations to the data set [@torontosheltersystemflow]. A limitation of the data is that the data excludes individuals who do not sleep in shelters or who use other resources for shelter, such as public infrastructure and buildings open all hours.
 
 ```{r}
 #| echo: false
@@ -49,7 +48,6 @@ The website for the City of Toronto's Open Data Portal's data for Toronto's shel
 
 #### Workspace set-up ####
 library("tidyverse")
-#library("dplyr")
 library("here")
 library("knitr")
 
@@ -75,7 +73,7 @@ Table 1 displays a sample of the Toronto's shelter system data.
 
 # Results {#sec-data}
 
-# Average Number of Indivduals for each Age Group
+## Average Number of Indivduals for each Age Group
 
 Figure 1 demonstrates that individuals age 25 to 44 enter shelters the most on average, followed by individuals age 45 to 64, then those under 16, and then those age 16 to 24. Additionally, individuals 65 and over enter shelters the least on average. 
 ```{r}
@@ -105,7 +103,7 @@ ggplot(age_group_data, aes(x = age_group, y = average, fill = age_group)) +
        y = "Average")
 ```
 
-# Average Number of Actively Homeless Indivduals
+## Average Number of Actively Homeless Indivduals
 
 Figure 2 demonstrates that the average number of actively homeless individuals increased from 2018 to 2019, significantly decreased from 2019 to 2020, remained almost unchanged from 2020 to 2021, experienced a sharp increase from 2021 to 2022, and increased more from 2022 to 2023. Additionally, the average in 2023 reached a high of almost 10500 actively homeless individuals.
 
@@ -141,7 +139,7 @@ ggplot(avgs_actively_homeless_data, aes(x = date, y = avg, fill = date)) +
        y = "Average")
 ```
 
-# Average Number of Shelter Returners
+## Average Number of Shelter Returners
 
 Figure 3 illustrates that the average number of individuals who return to shelters each year increased each year from 2018 to 2021, then the average began to decrease from 2021 to 2022 and significantly declined from 2022 to 2023. In addition, less than 60 individuals returned to a shelter in 2023.
 
@@ -177,7 +175,7 @@ ggplot(avgs_returned_data, aes(x = date, y = avg, fill = date)) +
        y = "Average")
 ```
 
-# Average Number of Males and Females
+## Average Number of Males and Females
 
 There is an average of over 5000 male individuals in shelters each year; whereas for female individuals, there is an average of less than 4000. Figure 4 illustrates how every year, the average number of male shelter users is significantly higher than that of female users. Additionally, from 2020 to 2021, the average number of male shelter users increased while the average number of female shelter users decreased. In regards to other annual intervals, the average for males and females both increase from 2018 to 2019, decrease from 2019 to 2020, and increase from 2021 to 2023.  
 

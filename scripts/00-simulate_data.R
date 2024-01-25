@@ -16,7 +16,6 @@ n <- 504 # Number of observations/rows in the table
 
 # Dates for each row
  date_seq <- seq.Date(from=mdy("01-01-2018") , to=mdy("12-01-2023"), by="month")
-#date <- seq.Date(as.Date("01-01-2018"), as.Date("12-01-2023"), by="month", format="%m-%y")
 
 # Creating n rows with population group as "Chronic", "Refugees", "Families", 
 # "Youth", "Single Adult", and "Non-Refugees" in that order, repeating.
@@ -65,7 +64,7 @@ simulated_data <-
     gender_female = sample(1:5000, n, replace=TRUE),
   )
 
-# Format the date to match the date in the data set
+# Format the date as seen in the original data set
 simulated_data$date <- format(as.Date(simulated_data$date), "%b-%y")
 
 simulated_data
