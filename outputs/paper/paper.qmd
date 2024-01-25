@@ -133,7 +133,7 @@ avgs_actively_homeless_data <-
 
 ggplot(avgs_actively_homeless_data, aes(x = date, y = avg, fill = date)) +
   geom_line(stat = "identity") +
-  labs(title = "Average Number of Actively Homeless Individuals from 2018 to 2023",
+  labs(title = "Average Number of Actively Homeless Individuals",
        x = "Year",
        y = "Average")
 ```
@@ -176,7 +176,7 @@ ggplot(avgs_returned_data, aes(x = date, y = avg, fill = date)) +
 
 ## Average Number of Males and Females
 
-There is an average of over 5000 male individuals in shelters each year; whereas for female individuals, there is an average of less than 4000. Figure 4 illustrates how every year, the average number of male shelter users is significantly higher than that of female users. Additionally, from 2020 to 2021, the average number of male shelter users increased while the average number of female shelter users decreased. In regards to other annual intervals, the average for males and females both increase from 2018 to 2019, decrease from 2019 to 2020, and increase from 2021 to 2023.
+There is an average of over 5000 male individuals in shelters each year (blue); whereas for female individuals (red), there is an average of less than 4000. Figure 4 illustrates how every year, the average number of male shelter users is significantly higher than that of female users. Additionally, from 2020 to 2021, the average number of male shelter users increased while the average number of female shelter users decreased. In regards to other annual intervals, the average for males and females both increase from 2018 to 2019, decrease from 2019 to 2020, and increase from 2021 to 2023.
 
 ```{r}
 #| label: fig-malefemale
@@ -213,7 +213,7 @@ avgs_gender_data <-
 ggplot(avgs_gender_data, aes(x=date)) +
   geom_line(aes(y = avg_males), color="blue") +
   geom_line(aes(y = avg_females), color="red")+
-  labs(title = "Average Number of Males and Females in Shelters from 2018 to 2023",
+  labs(title = "Average Number of Males and Females in Shelters",
        x = "Year",
        y = "Average")
 ```
