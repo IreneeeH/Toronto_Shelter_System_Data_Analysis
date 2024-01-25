@@ -2,12 +2,11 @@
 title: "My title"
 subtitle: "My subtitle if needed"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Irene Huynh
+thanks: "Code and data are available at: https://github.com/IreneeeH/STA302-Term-Paper-1.git"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "Toronto’s shelter system and homeless population has experienced significant growth over recent years. Using Toronto’s shelter system data from the City of Toronto's Open Data Portal, this paper analyzes the trends of different demographics that utilized shelters from 2018 to 2023. This paper reveals the age group that visits shelters the most, the trend of the average number of individuals who are actively homeless using shelters, the average number of people who return to shelters after acquring housing, and the gap separating the average number of male and female shelter users from 2018 to 2023."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -19,9 +18,7 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
 ```
-
 
 # Introduction
 
@@ -36,9 +33,14 @@ The remainder of this paper is structured as follows: the Data section details t
 
 # Data {#sec-data}
 
+# Sources
 The data utilized in this paper was retrieved from the City of Toronto's Open Data Portal. The statistical programming language R was used to retrieve, clean, and process the data. In particular, the following R packages were used: opendatatoronto and tidyverse for data acquistion, and janitor for data cleaning and processing.
 
+# Toronto Shelter System Data
 The shelter system data acquired from the City of Toronto's Open Data Portal provided monthly statistics of Toronto's shelters from January 2018 to December 2023. For each month, the data set included information for the entire population, chronic visitors, refugees, families, youth, single adults, and non-refugees. The information of interest for each of those demographics are the number of individuals that returned to shelters after previously acquiring housing, those that are new to the shelter system, those that are actively homeless, those that identify as male and female, and the number of individuals in each age group in that demographic. The age groups consist of visitors under 16, 16 to 24, 25 to 44, 45 to 64, and 65 years of age or older.
+
+# Limitations
+The website for the City of Toronto's Open Data Portal's data for Toronto's shelter system stated that there were limitations to the data set (). A limitation of the data is that the data excludes individuals who do not sleep in shelters or who use other resources for shelter, such as public infrastructure and buildings open all hours.
 
 ```{r}
 #| echo: false
@@ -69,7 +71,13 @@ cleaned_toronto_shelters_data |>
   slice(1:14) |>
   kable(col.names = c("Date", "Population Group", "Returned from Housing", "New to Shelter", "Actively Homeless", "Age Under 16", "Age 16-24","Age 25-44", "Age 45-64", "Age 65+", "Males", "Females"))
 ```
+Table 1 displays a sample of the Toronto's shelter system data.
 
+# Results {#sec-data}
+
+# Average Number of Indivduals for each Age Group
+
+Figure 1 demonstrates that individuals age 25 to 44 enter shelters the most on average, followed by individuals age 45 to 64, then those under 16, and then those age 16 to 24. Additionally, individuals 65 and over enter shelters the least on average. 
 ```{r}
 #| label: fig-agegroupavg
 #| fig-cap: "The average of all shelter visitors in each age group over 6 years from 2018 to 2023"
@@ -96,6 +104,11 @@ ggplot(age_group_data, aes(x = age_group, y = average, fill = age_group)) +
        x = "Age Group",
        y = "Average")
 ```
+
+# Average Number of Actively Homeless Indivduals
+
+Figure 2 demonstrates that the average number of actively homeless individuals increased from 2018 to 2019, significantly decreased from 2019 to 2020, remained almost unchanged from 2020 to 2021, experienced a sharp increase from 2021 to 2022, and increased more from 2022 to 2023. Additionally, the average in 2023 reached a high of almost 10500 actively homeless individuals.
+
 ```{r}
 #| label: fig-activelyhomeless
 #| fig-cap: "The average number of actively homeless people from 2018 to 2023"
@@ -127,6 +140,10 @@ ggplot(avgs_actively_homeless_data, aes(x = date, y = avg, fill = date)) +
        x = "Year",
        y = "Average")
 ```
+
+# Average Number of Shelter Returners
+
+Figure 3 illustrates that the average number of individuals who return to shelters each year increased each year from 2018 to 2021, then the average began to decrease from 2021 to 2022 and significantly declined from 2022 to 2023. In addition, less than 60 individuals returned to a shelter in 2023.
 
 ```{r}
 #| label: fig-returnedfromhousingavg
@@ -160,9 +177,13 @@ ggplot(avgs_returned_data, aes(x = date, y = avg, fill = date)) +
        y = "Average")
 ```
 
+# Average Number of Males and Females
+
+There is an average of over 5000 male individuals in shelters each year; whereas for female individuals, there is an average of less than 4000. Figure 4 illustrates how every year, the average number of male shelter users is significantly higher than that of female users. Additionally, from 2020 to 2021, the average number of male shelter users increased while the average number of female shelter users decreased. In regards to other annual intervals, the average for males and females both increase from 2018 to 2019, decrease from 2019 to 2020, and increase from 2021 to 2023.  
+
 ```{r}
 #| label: fig-malefemale
-#| fig-cap: "The average of all shelter visitors in each age group over 6 years from 2018 to 2023"
+#| fig-cap: "The average of male and female shelter visitors from 2018 to 2023"
 #| echo: false
 #| warning: false
 #| message: false
@@ -200,60 +221,8 @@ ggplot(avgs_gender_data, aes(x=date)) +
        y = "Average")
 ```
 
-
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-
-
-
 # Discussion
 
-## First discussion point {#sec-first-point}
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-## Third discussion point
 
 ## Weaknesses and next steps
 
@@ -264,31 +233,6 @@ Weaknesses and next steps should also be included.
 \appendix
 
 # Appendix {-}
-
-
-# Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-
-```
 
 
 
