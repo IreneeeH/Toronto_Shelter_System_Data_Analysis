@@ -5,7 +5,7 @@ author:
 thanks: "Code and data are available at: https://github.com/IreneeeH/STA302-Term-Paper-1.git"
 date: today
 date-format: long
-abstract: "Toronto’s shelter system and homeless population has experienced significant growth over recent years. Using Toronto’s shelter system data from the City of Toronto's Open Data Portal, this paper analyzes the trends of different demographics that utilized shelters from 2018 to 2023. This paper reveals the age group that visits shelters the most, the trend of the average number of individuals who are actively homeless using shelters, the average number of people who return to shelters after acquiring housing, and the gap separating the average number of male and female shelter users from 2018 to 2023."
+abstract: "Toronto’s shelter system and homeless population has experienced a significant increase over recent years. Using Toronto’s shelter system data from the City of Toronto's Open Data Portal, this paper analyzes the trends of different demographics that utilized shelters from 2018 to 2023. This paper reveals the age group that visits shelters the most, the trend of the average number of individuals who are actively homeless using shelters, the average number of people who return to shelters after acquiring housing, and the gap separating the average number of male and female shelter users from 2018 to 2023."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -21,19 +21,19 @@ library(tidyverse)
 
 # Introduction
 
-Toronto’s shelter system provides a temporary home to those who are in need of one. The system is essential for Toronto’s homeless population and refugees as the shelters uphold standards that support meals and laundry accommodations, mental health and harm reduction services, and a host of counselors to direct and aid individuals acquire permanent housing. Although the shelters provide a multitude of services and aid to secure permanent housing for the unhoused, there are still many who return to shelters after securing housing.
+Toronto’s shelter system provides a temporary home to those who are in need of one. The system is essential for Toronto’s homeless population and refugees as the shelters uphold standards that support meals and laundry accommodations, mental health and harm reduction services, and a host of counselors to direct and aid individuals acquire permanent housing. Although the shelters provide a multitude of services and aid to secure permanent housing for the unhoused, there are still many who return to shelters after securing housing [@torontoshelters].
 
-The affordable housing crisis is directly contributing to Toronto’s shelter availability crisis. As Toronto’s housing market has skyrocketed in the past few years, it is no wonder why Toronto’s shelters are receiving significantly more visitors. According to CBC News, an estimated average of at least 273 individuals were turned away from shelters in June 2023, which was a record high for Toronto shelters [@cbc]. The amount of families seeking warm beds has been unmatched and as Toronto’s winters can be extremely frigid, shelter availability is becoming increasingly more critical.
+The affordable housing crisis is directly contributing to Toronto’s shelter availability crisis. As Toronto’s housing market has skyrocketed in the past few years, it is no wonder why Toronto’s shelters are receiving significantly more visitors. According to CBC News, an estimated average of at least 273 individuals were turned away from shelters in June 2023, which was a record high for Toronto shelters [@cbcshelters]. The amount of families seeking warm beds has been unmatched and as Toronto’s winters can be extremely frigid, shelter availability is becoming increasingly more critical.
 
 The goal of this paper is to analyze the demographics that utilize Toronto’s shelter system. Analyzing different age groups that utilize shelters are of particular interest. In addition, this paper is also concerned with the actively homeless population and different demographics, such as refugees and single adults, that stay in shelters. Analyzing and studying Toronto’s shelter system data can reveal those within society that are struggling the most with securing housing.
 
-The remainder of this paper is structured as follows: the Data section details the collection and processing of Toronto's shelter system data. The following Results section displays tables and graphs that help illustrate trends found in the data. The final Discussion section analyzes and draws conclusions from the tables and graphs exhibited in the previous section.
+The remainder of this paper is structured as follows: the Data section details the collection and processing of Toronto's shelter system data. The following Results section displays tables and graphs that help illustrate trends found in the data and analyzes and draws conclusions from those tables and graphs.
 
 
 # Data
 
 ## Sources
-The data utilized in this paper was retrieved from the City of Toronto's Open Data Portal [@opendatatoronto]. The statistical programming language R was used to retrieve, clean, and process the data [@citeR]. In particular, the following R packages were used: opendatatoronto and tidyverse [@tidyverse] for data acquisition, janitor [@janitor] and knitr [@knitr] for data cleaning and processing, and ggplot2 [@ggplot2] for creating figures.
+The data utilized in this paper was retrieved from the City of Toronto's Open Data Portal [@opendatatoronto]. The statistical programming language R was used to retrieve, clean, and process the data [@citeR]. In particular, the following R packages were used: opendatatoronto [@opendatatoronto] and tidyverse [@tidyverse] for data acquisition, janitor [@janitor] and knitr [@knitr] for data cleaning and processing, and ggplot2 [@ggplot2] for creating figures.
 
 ## Toronto Shelter System Data
 The shelter system data acquired from the City of Toronto's Open Data Portal provided monthly statistics of Toronto's shelters from January 2018 to December 2023. For each month, the data set included information for the entire population, chronic visitors, refugees, families, youth, single adults, and non-refugees. The information of interest for each of those demographics are the number of individuals that returned to shelters after previously acquiring housing, those that are new to the shelter system, those that are actively homeless, those that identify as male and female, and the number of individuals in each age group in that demographic. The age groups consist of visitors under 16, 16 to 24, 25 to 44, 45 to 64, and 65 years of age or older.
@@ -75,7 +75,7 @@ Table 1 displays a sample of the Toronto's shelter system data.
 
 ## Average Number of Indivduals for each Age Group
 
-Figure 1 demonstrates that individuals age 25 to 44 enter shelters the most on average, followed by individuals age 45 to 64, then those under 16, and then those age 16 to 24. Additionally, individuals 65 and over enter shelters the least on average. 
+Figure 1 demonstrates that individuals age 25 to 44 enter shelters the most on average, followed by individuals age 45 to 64, then those under 16 and those age 16 to 24. Additionally, individuals 65 and over enter shelters the least on average. This result is expected as the cost of living in Toronto has risen significantly in recent years and individuals age 25 to 44 must have a large percentage of their income allotted to rent [@cbcliving]. This quota may be difficult to reach every month as the price of other necessities have also risen, such as grocery bills. Individuals over 65 may not choose to stay in shelters as they have other options, including retirement homes and elder care centres.
 ```{r}
 #| label: fig-agegroupavg
 #| fig-cap: "The average of all shelter visitors in each age group over 6 years from 2018 to 2023"
@@ -105,8 +105,7 @@ ggplot(age_group_data, aes(x = age_group, y = average, fill = age_group)) +
 
 ## Average Number of Actively Homeless Indivduals
 
-Figure 2 demonstrates that the average number of actively homeless individuals increased from 2018 to 2019, significantly decreased from 2019 to 2020, remained almost unchanged from 2020 to 2021, experienced a sharp increase from 2021 to 2022, and increased more from 2022 to 2023. Additionally, the average in 2023 reached a high of almost 10500 actively homeless individuals.
-
+Figure 2 demonstrates that the average number of actively homeless individuals increased from 2018 to 2019, significantly decreased from 2019 to 2020, remained almost unchanged from 2020 to 2021, experienced a sharp increase from 2021 to 2022, and increased more from 2022 to 2023. Additionally, the average in 2023 reached a high of almost 10500 actively homeless individuals. The housing crisis and spike in the cost of living since the COVID-19 pandemic is a notable contributing factor to the increase in homelessness and shelter usage after 2021. The significant decrease in the average number of actively homeless individuals using shelters from 2019 to 2021 can also be attributed to the pandemic: many public areas were restricted or fully closed for physical distancing purposes.
 ```{r}
 #| label: fig-activelyhomeless
 #| fig-cap: "The average number of actively homeless people from 2018 to 2023"
@@ -141,7 +140,7 @@ ggplot(avgs_actively_homeless_data, aes(x = date, y = avg, fill = date)) +
 
 ## Average Number of Shelter Returners
 
-Figure 3 illustrates that the average number of individuals who return to shelters each year increased each year from 2018 to 2021, then the average began to decrease from 2021 to 2022 and significantly declined from 2022 to 2023. In addition, less than 60 individuals returned to a shelter in 2023.
+Figure 3 illustrates that the average number of individuals who return to shelters each year increased each year from 2018 to 2021, then the average began to decrease from 2021 to 2022 and significantly declined from 2022 to 2023. In addition, less than 60 individuals returned to a shelter in 2023. This outcome is surprising as it was expected to find that after acquiring housing, many would return to shelters due to the rise of rental prices and the overall housing and cost of living crisis in recent years. Additionally, Figure 2 demonstrates the significant increase in homeless individuals. A reason that can explain why many homeless people who acquire housing and become homeless again but do not return to shelters is that more individuals are experiencing homelessness; thus, shelter capacity is quickly filling up and many returning visitors are being turned away [@cbcshelters].
 
 ```{r}
 #| label: fig-returnedfromhousingavg
@@ -177,7 +176,7 @@ ggplot(avgs_returned_data, aes(x = date, y = avg, fill = date)) +
 
 ## Average Number of Males and Females
 
-There is an average of over 5000 male individuals in shelters each year; whereas for female individuals, there is an average of less than 4000. Figure 4 illustrates how every year, the average number of male shelter users is significantly higher than that of female users. Additionally, from 2020 to 2021, the average number of male shelter users increased while the average number of female shelter users decreased. In regards to other annual intervals, the average for males and females both increase from 2018 to 2019, decrease from 2019 to 2020, and increase from 2021 to 2023.  
+There is an average of over 5000 male individuals in shelters each year; whereas for female individuals, there is an average of less than 4000. Figure 4 illustrates how every year, the average number of male shelter users is significantly higher than that of female users. Additionally, from 2020 to 2021, the average number of male shelter users increased while the average number of female shelter users decreased. In regards to other annual intervals, the average for males and females both increase from 2018 to 2019, decrease from 2019 to 2020, and increase from 2021 to 2023.
 
 ```{r}
 #| label: fig-malefemale
@@ -219,23 +218,7 @@ ggplot(avgs_gender_data, aes(x=date)) +
        y = "Average")
 ```
 
-# Discussion
-
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
-
 \newpage
-
-\appendix
-
-# Appendix {-}
-
-
-
-\newpage
-
 
 # References
 
