@@ -25,7 +25,7 @@ library(palmerpenguins)
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. 
+
 
 The remainder of this paper is structured as follows. @sec-data....
 
@@ -36,17 +36,33 @@ The remainder of this paper is structured as follows. @sec-data....
 Some of our data is of penguins (@fig-bills), from @palmerpenguins.
 
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
+#| echo: false
+#| warning: false
+#| message: false
+
+#### Workspace set-up ####
+library("tidyverse")
+#library("dplyr")
+library("here")
+library("knitr")
+
+# Read in the cleaned data
+cleaned_toronto_shelters_data <-
+  read_csv(
+    file = here("outputs/data/cleaned_toronto_shelters_data.csv"),
+    show_col_types = FALSE
+  )
+
+```
+
+```{r}
+#| label: tbl-sampledata
+#| tbl-cap: "Sample of Toronto Shelter Flow Statistics from 2018 to 2023"
 #| echo: false
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+cleaned_toronto_shelters_data |>
+  slice(1:14) |>
+  kable(col.names = c("Date", "Population Group", "Returned from Housing", "New to Shelter", "Actively Homeless", "Males", "Females"))
 ```
 
 Talk more about it.

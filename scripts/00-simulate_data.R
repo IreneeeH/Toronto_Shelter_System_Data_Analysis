@@ -56,6 +56,11 @@ simulated_data <-
     returned_from_housing = sample(1:200, n, replace=TRUE),
     newly_identified = sample(1:2000, n, replace=TRUE),
     actively_homeless = sample(1:11000, n, replace=TRUE),
+    age_under16 = sample(1:2000, n, replace=TRUE),
+    age_16_24 = sample(1:2000, n, replace=TRUE),
+    age_25_44 = sample(1:5000, n, replace=TRUE),
+    age_45_64 =sample(1:4000, n, replace=TRUE),
+    age_65over = sample(1:700, n, replace=TRUE),
     gender_male = sample(1:7000, n, replace=TRUE),
     gender_female = sample(1:5000, n, replace=TRUE),
   )
